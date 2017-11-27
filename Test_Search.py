@@ -7,7 +7,7 @@ class Test_OMK(unittest.TestCase):
 
    def setUp(self):
        self.driver = webdriver.Chrome()
-
+# Enter the OMK website as a mentor.
    def test_omk_mentor(self):
        user = "Ranjitha"
        pwd = "ranji12345"
@@ -25,6 +25,7 @@ class Test_OMK(unittest.TestCase):
        driver.get("http://127.0.0.1:8000/mentorhome/")
        assert "Logged In"
        time.sleep(2)
+   # Search for student by name Goutham   
        search= driver.find_element_by_name("name")
        search.send_keys("Goutham")
        time.sleep(2)
@@ -34,6 +35,7 @@ class Test_OMK(unittest.TestCase):
        time.sleep(3)
        driver.get("http://127.0.0.1:8000/mentorhome/")
        time.sleep(2)
+    # Search by student Cuurent Grade "A"  
        search = driver.find_element_by_name("currgrade")
        search.send_keys("A")
        time.sleep(2)
@@ -43,6 +45,7 @@ class Test_OMK(unittest.TestCase):
        time.sleep(3)
        driver.get("http://127.0.0.1:8000/mentorhome/")
        time.sleep(2)
+    # Search by student cuurent grade "A" and previous grade "F".  
        search = driver.find_element_by_name("currgrade")
        search.send_keys("A")
        search = driver.find_element_by_name("prevgrade")
