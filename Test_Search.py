@@ -7,54 +7,54 @@ class Test_OMK(unittest.TestCase):
 
    def setUp(self):
        self.driver = webdriver.Chrome()
-# Enter the OMK website as a mentor.
-   def test_omk_mentor(self):
-       user = "Ranjitha"
-       pwd = "ranji12345"
+# Employee Login to the OMK website.
+   def test_omk_employee(self):
+       user = "Sravani"
+       pwd = "srav12345"
        driver = self.driver
        driver.maximize_window()
-       driver.get("http://127.0.0.1:8000/")
+       driver.get("https://om4k-1.herokuapp.com/")
        time.sleep(2)
-       driver.get("http://127.0.0.1:8000/login_user/")
+       driver.get("https://om4k-1.herokuapp.com/login_user/")
        elem = driver.find_element_by_id("id_username")
        elem.send_keys(user)
        elem = driver.find_element_by_id("id_password")
        elem.send_keys(pwd)
        time.sleep(2)
        elem.send_keys(Keys.RETURN)
-       driver.get("http://127.0.0.1:8000/mentorhome/")
+       driver.get("https://om4k-1.herokuapp.com/emphome/")
        assert "Logged In"
        time.sleep(2)
-   # Search for student by name Goutham   
+  # Search for student using their name.    
        search= driver.find_element_by_name("name")
-       search.send_keys("Goutham")
+       elem=driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/div/input[1]")
+       elem.send_keys("Nikesh")
        time.sleep(2)
-       elem = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/button").click()
-       driver.get("http://127.0.0.1:8000/searchment/?name=Goutham&currgrade=&prevgrade=")
+       elem.send_keys(Keys.RETURN)
        assert "Student Record Found"
        time.sleep(3)
-       driver.get("http://127.0.0.1:8000/mentorhome/")
+       driver.get("https://om4k-1.herokuapp.com/emphome/")
        time.sleep(2)
-    # Search by student Cuurent Grade "A"  
+   # Search for students who got B+ in their current       
        search = driver.find_element_by_name("currgrade")
-       search.send_keys("A")
+       elem=driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/div/input[2]")
+       search.send_keys("B+")
        time.sleep(2)
-       elem = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/button").click()
+       elem.send_keys(Keys.RETURN)
        time.sleep(1)
-       driver.get("http://127.0.0.1:8000/searchment/?name=&currgrade=A&prevgrade=")
-       time.sleep(3)
-       driver.get("http://127.0.0.1:8000/mentorhome/")
+       driver.get("https://om4k-1.herokuapp.com/emphome/")
        time.sleep(2)
-    # Search by student cuurent grade "A" and previous grade "F".  
+    # Search for student who got A in their current grade and F as in their previous grade     
        search = driver.find_element_by_name("currgrade")
+       elem = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/div/input[2]")
        search.send_keys("A")
        search = driver.find_element_by_name("prevgrade")
+       elem = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/div/input[3]")
        search.send_keys("F")
        time.sleep(2)
-       elem = driver.find_element_by_xpath("/html/body/div/div/div/div[1]/form/button").click()
-       time.sleep(1)
-       driver.get("http://127.0.0.1:8000/searchment/?name=&currgrade=A&prevgrade=F")
+       elem.send_keys(Keys.RETURN)
        time.sleep(2)
+
 
    def tearDown(self):
        self.driver.close()
