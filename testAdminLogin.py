@@ -19,7 +19,7 @@ class OMK_Admin(unittest.TestCase):
        elem = driver.find_element_by_id("id_password")
        elem.send_keys(pwd)
        elem.send_keys(Keys.RETURN)
-       assert "Incorrect Username and password"
+       #"Incorrect Username and password"
        time.sleep(2)
 
    def test_superuserloginValid(self):
@@ -33,11 +33,13 @@ class OMK_Admin(unittest.TestCase):
        elem = driver.find_element_by_id("id_password")
        elem.send_keys(pwd)
        elem.send_keys(Keys.RETURN)
-       assert "Logged In"
+       #Logged In
        time.sleep(2)
+
+       #Add Mentor
        elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[3]/td[1]/a").click()
        time.sleep(3)
-       assert "Opened Page to Add Mentor"
+       #"Opened Page to Add Mentor"
        elem = driver.find_element_by_id("id_Mentor_Id")
        elem.send_keys("m_11")
        elem = driver.find_element_by_id("id_Mentor_name")
@@ -55,24 +57,32 @@ class OMK_Admin(unittest.TestCase):
        elem.clear()
        elem.send_keys("F")
        time.sleep(2)
-       elem = driver.find_element_by_xpath("//*[@id='mentor_form']/div/div/input[1]").click()
+       elem = driver.find_element_by_name("_save").click()
+       #elem = driver.find_element_by_xpath("//*[@id='mentor_form']/div/div/input[1]").click()
        time.sleep(2)
-       assert "Created a Mentor"
+       #Created a Mentor
 
        # Editing the Mentor
-       driver.get("https://om4k-1.herokuapp.com/admin")
-       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[3]/td[2]/a").click()
+       elem = driver.find_element_by_link_text("MentorAutomatedTestFinal").click()
        time.sleep(2)
-       assert "Opened Page to Edit Mentor"
-       time.sleep(2)
-       elem = driver.find_element_by_xpath("//*[@id='result_list']/tbody/tr[1]/th/a").click()
+       #"Opened Page to Edit Mentor"
        elem = driver.find_element_by_id("id_Mentor_name")
        elem.clear()
        elem.send_keys("MentorTest12updatedFinal")
-       elem = driver.find_element_by_xpath("//*[@id='mentor_form']/div/div/input[1]").click()
-       time.sleep(3)
-       assert "Edited the Mentor"
+       elem = driver.find_element_by_name("_save").click()
+       # Edited the Mentor
        time.sleep(5)
+
+       # Deleting the created Mentor
+       driver.get("https://om4k-1.herokuapp.com/admin")
+       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[3]/td[2]/a").click()
+       # Finding teh created mentor
+       elem = driver.find_element_by_link_text("MentorTest12updatedFinal").click()
+       time.sleep(2)
+       elem = driver.find_element_by_link_text("Delete").click()
+       elem = driver.find_element_by_xpath("//*[@id='content']/form/div/input[2]").click()
+       time.sleep(5)
+
 
    def tearDown(self):
        self.driver.close()
