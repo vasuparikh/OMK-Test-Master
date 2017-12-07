@@ -37,7 +37,7 @@ class OMK_Admin(unittest.TestCase):
        time.sleep(2)
 
        #Add Mentor
-       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[3]/td[1]/a").click()
+       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[4]/td[1]/a").click()
        time.sleep(3)
        #"Opened Page to Add Mentor"
        elem = driver.find_element_by_id("id_Mentor_Id")
@@ -75,7 +75,7 @@ class OMK_Admin(unittest.TestCase):
 
        # Deleting the created Mentor
        driver.get("https://om4k-1.herokuapp.com/admin")
-       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[3]/td[2]/a").click()
+       elem = driver.find_element_by_xpath("//*[@id='content-main']/div[2]/table/tbody/tr[4]/td[2]/a").click()
        # Finding teh created mentor
        elem = driver.find_element_by_link_text("MentorTest12updatedFinal").click()
        time.sleep(2)
@@ -87,5 +87,7 @@ class OMK_Admin(unittest.TestCase):
    def tearDown(self):
        self.driver.close()
 
+
 if __name__ == "__main__":
    unittest.main()
+
